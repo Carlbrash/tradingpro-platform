@@ -17,7 +17,7 @@ interface FootballMatch {
 }
 
 const LiveFootballScoresComponent = () => {
-  // Much more matches for longer scrolling experience
+  // Much more matches for longer scrolling experience with NEW LEAGUES!
   const [matches] = useState<FootballMatch[]>([
     // Premier League
     {
@@ -56,45 +56,9 @@ const LiveFootballScoresComponent = () => {
       homeFlag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿',
       awayFlag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿'
     },
-    {
-      id: '4',
-      homeTeam: 'Newcastle',
-      awayTeam: 'West Ham',
-      homeScore: 1,
-      awayScore: 0,
-      status: 'LIVE',
-      minute: "52'",
-      league: 'Premier League',
-      homeFlag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿',
-      awayFlag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿'
-    },
-    {
-      id: '5',
-      homeTeam: 'Brighton',
-      awayTeam: 'Everton',
-      homeScore: 3,
-      awayScore: 1,
-      status: 'FT',
-      minute: "FT",
-      league: 'Premier League',
-      homeFlag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿',
-      awayFlag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿'
-    },
-    {
-      id: '6',
-      homeTeam: 'Aston Villa',
-      awayTeam: 'Crystal Palace',
-      homeScore: 1,
-      awayScore: 1,
-      status: 'LIVE',
-      minute: "41'",
-      league: 'Premier League',
-      homeFlag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿',
-      awayFlag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿'
-    },
     // La Liga
     {
-      id: '7',
+      id: '4',
       homeTeam: 'Real Madrid',
       awayTeam: 'Barcelona',
       homeScore: 1,
@@ -105,57 +69,9 @@ const LiveFootballScoresComponent = () => {
       homeFlag: '🇪🇸',
       awayFlag: '🇪🇸'
     },
-    {
-      id: '8',
-      homeTeam: 'Atletico Madrid',
-      awayTeam: 'Valencia',
-      homeScore: 2,
-      awayScore: 1,
-      status: 'FT',
-      minute: "FT",
-      league: 'La Liga',
-      homeFlag: '🇪🇸',
-      awayFlag: '🇪🇸'
-    },
-    {
-      id: '9',
-      homeTeam: 'Sevilla',
-      awayTeam: 'Villarreal',
-      homeScore: 0,
-      awayScore: 0,
-      status: 'LIVE',
-      minute: "23'",
-      league: 'La Liga',
-      homeFlag: '🇪🇸',
-      awayFlag: '🇪🇸'
-    },
-    {
-      id: '10',
-      homeTeam: 'Real Betis',
-      awayTeam: 'Athletic Bilbao',
-      homeScore: 2,
-      awayScore: 0,
-      status: 'LIVE',
-      minute: "88'",
-      league: 'La Liga',
-      homeFlag: '🇪🇸',
-      awayFlag: '🇪🇸'
-    },
-    {
-      id: '11',
-      homeTeam: 'Real Sociedad',
-      awayTeam: 'Getafe',
-      homeScore: 1,
-      awayScore: 2,
-      status: 'LIVE',
-      minute: "76'",
-      league: 'La Liga',
-      homeFlag: '🇪🇸',
-      awayFlag: '🇪🇸'
-    },
     // Serie A
     {
-      id: '12',
+      id: '5',
       homeTeam: 'Juventus',
       awayTeam: 'Inter Milan',
       homeScore: 1,
@@ -166,57 +82,9 @@ const LiveFootballScoresComponent = () => {
       homeFlag: '🇮🇹',
       awayFlag: '🇮🇹'
     },
-    {
-      id: '13',
-      homeTeam: 'AC Milan',
-      awayTeam: 'Roma',
-      homeScore: 1,
-      awayScore: 1,
-      status: 'LIVE',
-      minute: "58'",
-      league: 'Serie A',
-      homeFlag: '🇮🇹',
-      awayFlag: '🇮🇹'
-    },
-    {
-      id: '14',
-      homeTeam: 'Napoli',
-      awayTeam: 'Lazio',
-      homeScore: 3,
-      awayScore: 1,
-      status: 'LIVE',
-      minute: "81'",
-      league: 'Serie A',
-      homeFlag: '🇮🇹',
-      awayFlag: '🇮🇹'
-    },
-    {
-      id: '15',
-      homeTeam: 'Atalanta',
-      awayTeam: 'Fiorentina',
-      homeScore: 0,
-      awayScore: 2,
-      status: 'LIVE',
-      minute: "63'",
-      league: 'Serie A',
-      homeFlag: '🇮🇹',
-      awayFlag: '🇮🇹'
-    },
-    {
-      id: '16',
-      homeTeam: 'Bologna',
-      awayTeam: 'Torino',
-      homeScore: 1,
-      awayScore: 0,
-      status: 'LIVE',
-      minute: "29'",
-      league: 'Serie A',
-      homeFlag: '🇮🇹',
-      awayFlag: '🇮🇹'
-    },
     // Bundesliga
     {
-      id: '17',
+      id: '6',
       homeTeam: 'Bayern Munich',
       awayTeam: 'Borussia Dortmund',
       homeScore: 3,
@@ -227,45 +95,9 @@ const LiveFootballScoresComponent = () => {
       homeFlag: '🇩🇪',
       awayFlag: '🇩🇪'
     },
-    {
-      id: '18',
-      homeTeam: 'RB Leipzig',
-      awayTeam: 'Bayer Leverkusen',
-      homeScore: 1,
-      awayScore: 2,
-      status: 'LIVE',
-      minute: "72'",
-      league: 'Bundesliga',
-      homeFlag: '🇩🇪',
-      awayFlag: '🇩🇪'
-    },
-    {
-      id: '19',
-      homeTeam: 'Eintracht Frankfurt',
-      awayTeam: 'Wolfsburg',
-      homeScore: 2,
-      awayScore: 1,
-      status: 'LIVE',
-      minute: "55'",
-      league: 'Bundesliga',
-      homeFlag: '🇩🇪',
-      awayFlag: '🇩🇪'
-    },
-    {
-      id: '20',
-      homeTeam: 'Borussia M.gladbach',
-      awayTeam: 'Union Berlin',
-      homeScore: 0,
-      awayScore: 1,
-      status: 'LIVE',
-      minute: "37'",
-      league: 'Bundesliga',
-      homeFlag: '🇩🇪',
-      awayFlag: '🇩🇪'
-    },
     // Ligue 1
     {
-      id: '21',
+      id: '7',
       homeTeam: 'PSG',
       awayTeam: 'Marseille',
       homeScore: 2,
@@ -276,45 +108,9 @@ const LiveFootballScoresComponent = () => {
       homeFlag: '🇫🇷',
       awayFlag: '🇫🇷'
     },
-    {
-      id: '22',
-      homeTeam: 'Lyon',
-      awayTeam: 'Monaco',
-      homeScore: 0,
-      awayScore: 1,
-      status: 'LIVE',
-      minute: "45'",
-      league: 'Ligue 1',
-      homeFlag: '🇫🇷',
-      awayFlag: '🇫🇷'
-    },
-    {
-      id: '23',
-      homeTeam: 'Nice',
-      awayTeam: 'Lille',
-      homeScore: 1,
-      awayScore: 0,
-      status: 'LIVE',
-      minute: "61'",
-      league: 'Ligue 1',
-      homeFlag: '🇫🇷',
-      awayFlag: '🇫🇷'
-    },
-    {
-      id: '24',
-      homeTeam: 'Rennes',
-      awayTeam: 'Nantes',
-      homeScore: 3,
-      awayScore: 2,
-      status: 'FT',
-      minute: "FT",
-      league: 'Ligue 1',
-      homeFlag: '🇫🇷',
-      awayFlag: '🇫🇷'
-    },
     // Champions League
     {
-      id: '25',
+      id: '8',
       homeTeam: 'Man City',
       awayTeam: 'PSG',
       homeScore: 1,
@@ -325,45 +121,9 @@ const LiveFootballScoresComponent = () => {
       homeFlag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿',
       awayFlag: '🇫🇷'
     },
-    {
-      id: '26',
-      homeTeam: 'Real Madrid',
-      awayTeam: 'Bayern',
-      homeScore: 2,
-      awayScore: 1,
-      status: 'LIVE',
-      minute: "83'",
-      league: 'UCL',
-      homeFlag: '🇪🇸',
-      awayFlag: '🇩🇪'
-    },
-    {
-      id: '27',
-      homeTeam: 'Arsenal',
-      awayTeam: 'Barcelona',
-      homeScore: 0,
-      awayScore: 1,
-      status: 'LIVE',
-      minute: "42'",
-      league: 'UCL',
-      homeFlag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿',
-      awayFlag: '🇪🇸'
-    },
-    {
-      id: '28',
-      homeTeam: 'Liverpool',
-      awayTeam: 'Inter Milan',
-      homeScore: 3,
-      awayScore: 1,
-      status: 'LIVE',
-      minute: "87'",
-      league: 'UCL',
-      homeFlag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿',
-      awayFlag: '🇮🇹'
-    },
     // Greek Super League
     {
-      id: '29',
+      id: '9',
       homeTeam: 'Olympiacos',
       awayTeam: 'Panathinaikos',
       homeScore: 1,
@@ -374,45 +134,9 @@ const LiveFootballScoresComponent = () => {
       homeFlag: '🇬🇷',
       awayFlag: '🇬🇷'
     },
+    // Eredivisie
     {
-      id: '30',
-      homeTeam: 'AEK Athens',
-      awayTeam: 'PAOK',
-      homeScore: 0,
-      awayScore: 2,
-      status: 'LIVE',
-      minute: "74'",
-      league: 'Super League',
-      homeFlag: '🇬🇷',
-      awayFlag: '🇬🇷'
-    },
-    {
-      id: '31',
-      homeTeam: 'Aris',
-      awayTeam: 'Atromitos',
-      homeScore: 2,
-      awayScore: 0,
-      status: 'LIVE',
-      minute: "38'",
-      league: 'Super League',
-      homeFlag: '🇬🇷',
-      awayFlag: '🇬🇷'
-    },
-    {
-      id: '32',
-      homeTeam: 'Volos',
-      awayTeam: 'OFI Crete',
-      homeScore: 1,
-      awayScore: 3,
-      status: 'FT',
-      minute: "FT",
-      league: 'Super League',
-      homeFlag: '🇬🇷',
-      awayFlag: '🇬🇷'
-    },
-    // More International Matches
-    {
-      id: '33',
+      id: '10',
       homeTeam: 'Ajax',
       awayTeam: 'PSV',
       homeScore: 1,
@@ -423,8 +147,9 @@ const LiveFootballScoresComponent = () => {
       homeFlag: '🇳🇱',
       awayFlag: '🇳🇱'
     },
+    // Primeira Liga
     {
-      id: '34',
+      id: '11',
       homeTeam: 'Benfica',
       awayTeam: 'Porto',
       homeScore: 2,
@@ -435,8 +160,9 @@ const LiveFootballScoresComponent = () => {
       homeFlag: '🇵🇹',
       awayFlag: '🇵🇹'
     },
+    // Scottish Premiership
     {
-      id: '35',
+      id: '12',
       homeTeam: 'Celtic',
       awayTeam: 'Rangers',
       homeScore: 0,
@@ -447,8 +173,9 @@ const LiveFootballScoresComponent = () => {
       homeFlag: '🏴󠁧󠁢󠁳󠁣󠁴󠁿',
       awayFlag: '🏴󠁧󠁢󠁳󠁣󠁴󠁿'
     },
+    // Turkish Süper Lig
     {
-      id: '36',
+      id: '13',
       homeTeam: 'Galatasaray',
       awayTeam: 'Fenerbahce',
       homeScore: 1,
@@ -458,6 +185,423 @@ const LiveFootballScoresComponent = () => {
       league: 'Süper Lig',
       homeFlag: '🇹🇷',
       awayFlag: '🇹🇷'
+    },
+    // 🆕 FIFA Club World Cup
+    {
+      id: '14',
+      homeTeam: 'Real Madrid',
+      awayTeam: 'Manchester City',
+      homeScore: 2,
+      awayScore: 1,
+      status: 'LIVE',
+      minute: "67'",
+      league: 'FIFA Club WC',
+      homeFlag: '🇪🇸',
+      awayFlag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿'
+    },
+    {
+      id: '15',
+      homeTeam: 'Chelsea',
+      awayTeam: 'Al Hilal',
+      homeScore: 1,
+      awayScore: 0,
+      status: 'LIVE',
+      minute: "34'",
+      league: 'FIFA Club WC',
+      homeFlag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿',
+      awayFlag: '🇸🇦'
+    },
+    {
+      id: '16',
+      homeTeam: 'Bayern Munich',
+      awayTeam: 'Flamengo',
+      homeScore: 2,
+      awayScore: 1,
+      status: 'FT',
+      minute: "FT",
+      league: 'FIFA Club WC',
+      homeFlag: '🇩🇪',
+      awayFlag: '🇧🇷'
+    },
+    // 🆕 European U21 Championship
+    {
+      id: '17',
+      homeTeam: 'Spain U21',
+      awayTeam: 'Germany U21',
+      homeScore: 0,
+      awayScore: 1,
+      status: 'LIVE',
+      minute: "52'",
+      league: 'U21 Euro',
+      homeFlag: '🇪🇸',
+      awayFlag: '🇩🇪'
+    },
+    {
+      id: '18',
+      homeTeam: 'Italy U21',
+      awayTeam: 'France U21',
+      homeScore: 2,
+      awayScore: 2,
+      status: 'LIVE',
+      minute: "78'",
+      league: 'U21 Euro',
+      homeFlag: '🇮🇹',
+      awayFlag: '🇫🇷'
+    },
+    {
+      id: '19',
+      homeTeam: 'England U21',
+      awayTeam: 'Netherlands U21',
+      homeScore: 1,
+      awayScore: 0,
+      status: 'HT',
+      minute: "HT",
+      league: 'U21 Euro',
+      homeFlag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿',
+      awayFlag: '🇳🇱'
+    },
+    {
+      id: '20',
+      homeTeam: 'Portugal U21',
+      awayTeam: 'Croatia U21',
+      homeScore: 3,
+      awayScore: 1,
+      status: 'LIVE',
+      minute: "84'",
+      league: 'U21 Euro',
+      homeFlag: '🇵🇹',
+      awayFlag: '🇭🇷'
+    },
+    // 🆕 Serie B (Italy)
+    {
+      id: '21',
+      homeTeam: 'Parma',
+      awayTeam: 'Brescia',
+      homeScore: 3,
+      awayScore: 1,
+      status: 'LIVE',
+      minute: "81'",
+      league: 'Serie B',
+      homeFlag: '🇮🇹',
+      awayFlag: '🇮🇹'
+    },
+    {
+      id: '22',
+      homeTeam: 'Sampdoria',
+      awayTeam: 'Venezia',
+      homeScore: 0,
+      awayScore: 2,
+      status: 'LIVE',
+      minute: "59'",
+      league: 'Serie B',
+      homeFlag: '🇮🇹',
+      awayFlag: '🇮🇹'
+    },
+    {
+      id: '23',
+      homeTeam: 'Bari',
+      awayTeam: 'Catanzaro',
+      homeScore: 1,
+      awayScore: 1,
+      status: 'LIVE',
+      minute: "73'",
+      league: 'Serie B',
+      homeFlag: '🇮🇹',
+      awayFlag: '🇮🇹'
+    },
+    {
+      id: '24',
+      homeTeam: 'Palermo',
+      awayTeam: 'Cremonese',
+      homeScore: 2,
+      awayScore: 0,
+      status: 'LIVE',
+      minute: "46'",
+      league: 'Serie B',
+      homeFlag: '🇮🇹',
+      awayFlag: '🇮🇹'
+    },
+    // 🆕 Finland Veikkausliiga
+    {
+      id: '25',
+      homeTeam: 'HJK Helsinki',
+      awayTeam: 'FC Lahti',
+      homeScore: 2,
+      awayScore: 0,
+      status: 'LIVE',
+      minute: "46'",
+      league: 'Veikkausliiga',
+      homeFlag: '🇫🇮',
+      awayFlag: '🇫🇮'
+    },
+    {
+      id: '26',
+      homeTeam: 'KuPS',
+      awayTeam: 'FC Inter Turku',
+      homeScore: 1,
+      awayScore: 2,
+      status: 'LIVE',
+      minute: "62'",
+      league: 'Veikkausliiga',
+      homeFlag: '🇫🇮',
+      awayFlag: '🇫🇮'
+    },
+    {
+      id: '27',
+      homeTeam: 'SJK',
+      awayTeam: 'TPS Turku',
+      homeScore: 0,
+      awayScore: 1,
+      status: 'LIVE',
+      minute: "37'",
+      league: 'Veikkausliiga',
+      homeFlag: '🇫🇮',
+      awayFlag: '🇫🇮'
+    },
+    // 🆕 Sweden Allsvenskan
+    {
+      id: '28',
+      homeTeam: 'Malmö FF',
+      awayTeam: 'AIK',
+      homeScore: 1,
+      awayScore: 1,
+      status: 'LIVE',
+      minute: "85'",
+      league: 'Allsvenskan',
+      homeFlag: '🇸🇪',
+      awayFlag: '🇸🇪'
+    },
+    {
+      id: '29',
+      homeTeam: 'IFK Göteborg',
+      awayTeam: 'Djurgården',
+      homeScore: 0,
+      awayScore: 3,
+      status: 'FT',
+      minute: "FT",
+      league: 'Allsvenskan',
+      homeFlag: '🇸🇪',
+      awayFlag: '🇸🇪'
+    },
+    {
+      id: '30',
+      homeTeam: 'Hammarby',
+      awayTeam: 'BK Häcken',
+      homeScore: 2,
+      awayScore: 1,
+      status: 'LIVE',
+      minute: "71'",
+      league: 'Allsvenskan',
+      homeFlag: '🇸🇪',
+      awayFlag: '🇸🇪'
+    },
+    {
+      id: '31',
+      homeTeam: 'Elfsborg',
+      awayTeam: 'Kalmar FF',
+      homeScore: 1,
+      awayScore: 0,
+      status: 'LIVE',
+      minute: "54'",
+      league: 'Allsvenskan',
+      homeFlag: '🇸🇪',
+      awayFlag: '🇸🇪'
+    },
+    // 🆕 Sweden Superettan
+    {
+      id: '32',
+      homeTeam: 'GAIS',
+      awayTeam: 'Örebro SK',
+      homeScore: 1,
+      awayScore: 0,
+      status: 'LIVE',
+      minute: "38'",
+      league: 'Superettan',
+      homeFlag: '🇸🇪',
+      awayFlag: '🇸🇪'
+    },
+    {
+      id: '33',
+      homeTeam: 'Helsingborg',
+      awayTeam: 'Sandviken',
+      homeScore: 2,
+      awayScore: 2,
+      status: 'LIVE',
+      minute: "77'",
+      league: 'Superettan',
+      homeFlag: '🇸🇪',
+      awayFlag: '🇸🇪'
+    },
+    {
+      id: '34',
+      homeTeam: 'Trelleborgs',
+      awayTeam: 'Västerås SK',
+      homeScore: 0,
+      awayScore: 1,
+      status: 'LIVE',
+      minute: "65'",
+      league: 'Superettan',
+      homeFlag: '🇸🇪',
+      awayFlag: '🇸🇪'
+    },
+    // 🆕 Norway Eliteserien
+    {
+      id: '35',
+      homeTeam: 'Rosenborg',
+      awayTeam: 'Molde',
+      homeScore: 1,
+      awayScore: 2,
+      status: 'LIVE',
+      minute: "56'",
+      league: 'Eliteserien',
+      homeFlag: '🇳🇴',
+      awayFlag: '🇳🇴'
+    },
+    {
+      id: '36',
+      homeTeam: 'Bodø/Glimt',
+      awayTeam: 'Viking FK',
+      homeScore: 3,
+      awayScore: 0,
+      status: 'LIVE',
+      minute: "88'",
+      league: 'Eliteserien',
+      homeFlag: '🇳🇴',
+      awayFlag: '🇳🇴'
+    },
+    {
+      id: '37',
+      homeTeam: 'Brann',
+      awayTeam: 'Lillestrøm',
+      homeScore: 0,
+      awayScore: 1,
+      status: 'LIVE',
+      minute: "43'",
+      league: 'Eliteserien',
+      homeFlag: '🇳🇴',
+      awayFlag: '🇳🇴'
+    },
+    {
+      id: '38',
+      homeTeam: 'Tromsø',
+      awayTeam: 'Odd',
+      homeScore: 2,
+      awayScore: 1,
+      status: 'LIVE',
+      minute: "72'",
+      league: 'Eliteserien',
+      homeFlag: '🇳🇴',
+      awayFlag: '🇳🇴'
+    },
+    // 🆕 Norway Division 1
+    {
+      id: '39',
+      homeTeam: 'Raufoss',
+      awayTeam: 'Ranheim',
+      homeScore: 1,
+      awayScore: 1,
+      status: 'LIVE',
+      minute: "69'",
+      league: 'Division 1',
+      homeFlag: '🇳🇴',
+      awayFlag: '🇳🇴'
+    },
+    {
+      id: '40',
+      homeTeam: 'Egersund',
+      awayTeam: 'Kongsvinger',
+      homeScore: 2,
+      awayScore: 0,
+      status: 'LIVE',
+      minute: "51'",
+      league: 'Division 1',
+      homeFlag: '🇳🇴',
+      awayFlag: '🇳🇴'
+    },
+    {
+      id: '41',
+      homeTeam: 'Stabæk',
+      awayTeam: 'Sandnes Ulf',
+      homeScore: 1,
+      awayScore: 2,
+      status: 'LIVE',
+      minute: "83'",
+      league: 'Division 1',
+      homeFlag: '🇳🇴',
+      awayFlag: '🇳🇴'
+    },
+    // 🆕 MLB (American Baseball)
+    {
+      id: '42',
+      homeTeam: 'Yankees',
+      awayTeam: 'Red Sox',
+      homeScore: 7,
+      awayScore: 4,
+      status: 'LIVE',
+      minute: "9th",
+      league: 'MLB',
+      homeFlag: '🇺🇸',
+      awayFlag: '🇺🇸'
+    },
+    {
+      id: '43',
+      homeTeam: 'Dodgers',
+      awayTeam: 'Giants',
+      homeScore: 3,
+      awayScore: 8,
+      status: 'LIVE',
+      minute: "7th",
+      league: 'MLB',
+      homeFlag: '🇺🇸',
+      awayFlag: '🇺🇸'
+    },
+    {
+      id: '44',
+      homeTeam: 'Astros',
+      awayTeam: 'Rangers',
+      homeScore: 5,
+      awayScore: 2,
+      status: 'LIVE',
+      minute: "6th",
+      league: 'MLB',
+      homeFlag: '🇺🇸',
+      awayFlag: '🇺🇸'
+    },
+    {
+      id: '45',
+      homeTeam: 'Mets',
+      awayTeam: 'Phillies',
+      homeScore: 1,
+      awayScore: 4,
+      status: 'LIVE',
+      minute: "8th",
+      league: 'MLB',
+      homeFlag: '🇺🇸',
+      awayFlag: '🇺🇸'
+    },
+    {
+      id: '46',
+      homeTeam: 'Braves',
+      awayTeam: 'Marlins',
+      homeScore: 6,
+      awayScore: 3,
+      status: 'FT',
+      minute: "FT",
+      league: 'MLB',
+      homeFlag: '🇺🇸',
+      awayFlag: '🇺🇸'
+    },
+    {
+      id: '47',
+      homeTeam: 'Cubs',
+      awayTeam: 'Cardinals',
+      homeScore: 2,
+      awayScore: 5,
+      status: 'LIVE',
+      minute: "5th",
+      league: 'MLB',
+      homeFlag: '🇺🇸',
+      awayFlag: '🇺🇸'
     }
   ])
 
@@ -467,17 +611,17 @@ const LiveFootballScoresComponent = () => {
         <div className="flex items-center gap-3 mb-2">
           <div className="flex items-center gap-2">
             <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-            <span className="text-white font-semibold text-sm">⚽ Live Football Scores</span>
+            <span className="text-white font-semibold text-sm">⚽ Live Sports Scores</span>
           </div>
-          <div className="text-xs text-slate-400">Real-time updates • {matches.filter(m => m.status === 'LIVE').length} live matches</div>
+          <div className="text-xs text-slate-400">Real-time updates • {matches.filter(m => m.status === 'LIVE').length} live matches • 🆕 NEW LEAGUES ADDED!</div>
         </div>
 
-        {/* Much Slower Scrolling Container - Almost 10x slower! */}
+        {/* Much Slower Scrolling Container - Perfect Speed! */}
         <div className="relative overflow-hidden h-16">
           <div
             className="flex items-center gap-6 whitespace-nowrap h-full"
             style={{
-              animation: 'scrollRightSlow 600s linear infinite', // Much slower: 600s instead of 200s
+              animation: 'scrollRightSlow 800s linear infinite', // Even slower: 800s for more content
               width: 'max-content'
             }}
           >
@@ -487,11 +631,12 @@ const LiveFootballScoresComponent = () => {
                 key={`${match.id}-${index}`}
                 className="flex items-center gap-3 bg-slate-700/50 rounded-lg px-4 py-2 min-w-fit hover:bg-slate-600/50 transition-colors"
               >
-                {/* League Badge with Color Coding */}
+                {/* League Badge with Enhanced Color Coding */}
                 <div className={`text-xs font-medium min-w-fit px-2 py-1 rounded ${
                   match.league === 'Premier League' ? 'bg-purple-600/30 text-purple-300' :
                   match.league === 'La Liga' ? 'bg-orange-600/30 text-orange-300' :
                   match.league === 'Serie A' ? 'bg-blue-600/30 text-blue-300' :
+                  match.league === 'Serie B' ? 'bg-blue-500/30 text-blue-200' :
                   match.league === 'Bundesliga' ? 'bg-red-600/30 text-red-300' :
                   match.league === 'Ligue 1' ? 'bg-cyan-600/30 text-cyan-300' :
                   match.league === 'UCL' ? 'bg-yellow-600/30 text-yellow-300' :
@@ -499,7 +644,16 @@ const LiveFootballScoresComponent = () => {
                   match.league === 'Eredivisie' ? 'bg-orange-500/30 text-orange-200' :
                   match.league === 'Primeira Liga' ? 'bg-emerald-600/30 text-emerald-300' :
                   match.league === 'Scottish Prem' ? 'bg-indigo-600/30 text-indigo-300' :
-                  'bg-pink-600/30 text-pink-300'
+                  match.league === 'Süper Lig' ? 'bg-pink-600/30 text-pink-300' :
+                  match.league === 'FIFA Club WC' ? 'bg-gold-600/30 text-gold-300' :
+                  match.league === 'U21 Euro' ? 'bg-violet-600/30 text-violet-300' :
+                  match.league === 'Veikkausliiga' ? 'bg-blue-400/30 text-blue-200' :
+                  match.league === 'Allsvenskan' ? 'bg-yellow-500/30 text-yellow-200' :
+                  match.league === 'Superettan' ? 'bg-yellow-400/30 text-yellow-100' :
+                  match.league === 'Eliteserien' ? 'bg-red-500/30 text-red-200' :
+                  match.league === 'Division 1' ? 'bg-red-400/30 text-red-100' :
+                  match.league === 'MLB' ? 'bg-blue-800/30 text-blue-100' :
+                  'bg-gray-600/30 text-gray-300'
                 }`}>
                   {match.league}
                 </div>
@@ -554,7 +708,7 @@ const LiveFootballScoresComponent = () => {
         </div>
       </div>
 
-      {/* Much Slower CSS Animation */}
+      {/* Slower CSS Animation for Better Experience */}
       <style jsx global>{`
         @keyframes scrollRightSlow {
           0% {
