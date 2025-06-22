@@ -446,142 +446,274 @@ export function UserTradingDashboard() {
 
   const PortfolioPage = () => (
     <div className="space-y-6">
-      {/* Portfolio Overview Cards */}
+      {/* Enhanced Portfolio Overview Cards */}
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        <Card className="bg-gradient-to-br from-slate-800 to-slate-700 border-slate-600 hover:shadow-lg transition-shadow">
+        <Card className="bg-gradient-to-br from-slate-800 via-slate-700 to-slate-800 border-slate-600 hover:shadow-xl transition-all duration-300 hover:scale-105">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-slate-300 mb-1">Portfolio Value</p>
-                <p className="text-2xl font-bold text-white">${portfolioValue.toLocaleString()}</p>
-                <p className="text-xs text-slate-400">Available: $5,000</p>
+                <p className="text-3xl font-bold text-white">${portfolioValue.toLocaleString()}</p>
+                <p className="text-xs text-slate-400 flex items-center gap-1 mt-1">
+                  <span>Available: $5,000</span>
+                  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                </p>
               </div>
-              <div className="h-12 w-12 bg-cyan-500/20 rounded-lg flex items-center justify-center">
-                <Wallet className="h-6 w-6 text-cyan-400" />
+              <div className="h-14 w-14 bg-gradient-to-r from-cyan-500 to-teal-500 rounded-xl flex items-center justify-center shadow-lg">
+                <Wallet className="h-7 w-7 text-white" />
               </div>
             </div>
           </CardContent>
         </Card>
 
-        <Card className="bg-gradient-to-br from-slate-800 to-slate-700 border-slate-600 hover:shadow-lg transition-shadow">
+        <Card className="bg-gradient-to-br from-slate-800 via-slate-700 to-slate-800 border-slate-600 hover:shadow-xl transition-all duration-300 hover:scale-105">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-slate-300 mb-1">Day P&L</p>
-                <p className={`text-2xl font-bold ${totalPnL >= 0 ? 'text-green-400' : 'text-red-400'}`}>
+                <p className="text-sm text-slate-300 mb-1">Today's P&L</p>
+                <p className={`text-3xl font-bold ${totalPnL >= 0 ? 'text-green-400' : 'text-red-400'}`}>
                   {totalPnL >= 0 ? '+' : ''}${totalPnL.toFixed(2)}
                 </p>
-                <p className="text-xs text-slate-400">{totalPnLPercent >= 0 ? '+' : ''}{totalPnLPercent.toFixed(2)}%</p>
+                <p className="text-xs text-slate-400 flex items-center gap-1 mt-1">
+                  {totalPnLPercent >= 0 ? '+' : ''}{totalPnLPercent.toFixed(2)}%
+                  <span className={`text-xs ${totalPnL >= 0 ? 'text-green-400' : 'text-red-400'}`}>
+                    vs yesterday
+                  </span>
+                </p>
               </div>
-              <div className={`h-12 w-12 rounded-lg flex items-center justify-center ${totalPnL >= 0 ? 'bg-green-500/20' : 'bg-red-500/20'}`}>
+              <div className={`h-14 w-14 rounded-xl flex items-center justify-center shadow-lg ${totalPnL >= 0 ? 'bg-gradient-to-r from-green-500 to-emerald-500' : 'bg-gradient-to-r from-red-500 to-rose-500'}`}>
                 {totalPnL >= 0 ?
-                  <TrendingUp className="h-6 w-6 text-green-400" /> :
-                  <TrendingDown className="h-6 w-6 text-red-400" />
+                  <TrendingUp className="h-7 w-7 text-white" /> :
+                  <TrendingDown className="h-7 w-7 text-white" />
                 }
               </div>
             </div>
           </CardContent>
         </Card>
 
-        <Card className="bg-gradient-to-br from-slate-800 to-slate-700 border-slate-600 hover:shadow-lg transition-shadow">
+        <Card className="bg-gradient-to-br from-slate-800 via-slate-700 to-slate-800 border-slate-600 hover:shadow-xl transition-all duration-300 hover:scale-105">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-slate-300 mb-1">Positions</p>
-                <p className="text-2xl font-bold text-white">{positions.length}</p>
-                <p className="text-xs text-slate-400">3 profitable</p>
+                <p className="text-sm text-slate-300 mb-1">Active Positions</p>
+                <p className="text-3xl font-bold text-white">{positions.length}</p>
+                <p className="text-xs text-slate-400 flex items-center gap-1 mt-1">
+                  <span className="text-green-400">3 profitable</span>
+                  <span>•</span>
+                  <span className="text-red-400">0 losing</span>
+                </p>
               </div>
-              <div className="h-12 w-12 bg-blue-500/20 rounded-lg flex items-center justify-center">
-                <BarChart3 className="h-6 w-6 text-blue-400" />
+              <div className="h-14 w-14 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-xl flex items-center justify-center shadow-lg">
+                <BarChart3 className="h-7 w-7 text-white" />
               </div>
             </div>
           </CardContent>
         </Card>
 
-        <Card className="bg-gradient-to-br from-slate-800 to-slate-700 border-slate-600 hover:shadow-lg transition-shadow">
+        <Card className="bg-gradient-to-br from-slate-800 via-slate-700 to-slate-800 border-slate-600 hover:shadow-xl transition-all duration-300 hover:scale-105">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-slate-300 mb-1">Success Rate</p>
-                <p className="text-2xl font-bold text-white">74%</p>
-                <p className="text-xs text-slate-400">Last 30 trades</p>
+                <p className="text-3xl font-bold text-white">74%</p>
+                <p className="text-xs text-slate-400 flex items-center gap-1 mt-1">
+                  <span>Last 30 trades</span>
+                  <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
+                </p>
               </div>
-              <div className="h-12 w-12 bg-emerald-500/20 rounded-lg flex items-center justify-center">
-                <Target className="h-6 w-6 text-emerald-400" />
+              <div className="h-14 w-14 bg-gradient-to-r from-emerald-500 to-green-500 rounded-xl flex items-center justify-center shadow-lg">
+                <Target className="h-7 w-7 text-white" />
               </div>
             </div>
           </CardContent>
         </Card>
       </div>
 
-      {/* Portfolio Chart and Allocation */}
+      {/* Advanced Analytics Row */}
+      <div className="grid gap-4 md:grid-cols-3">
+        <Card className="bg-gradient-to-br from-slate-800 to-slate-700 border-slate-600">
+          <CardContent className="p-6">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-lg font-semibold text-white">Risk Score</h3>
+              <div className="text-2xl">🎯</div>
+            </div>
+            <div className="space-y-3">
+              <div className="flex justify-between items-center">
+                <span className="text-sm text-slate-300">Current Risk</span>
+                <span className="text-sm font-bold text-yellow-400">Medium</span>
+              </div>
+              <div className="w-full bg-slate-700 rounded-full h-2">
+                <div className="bg-gradient-to-r from-green-500 via-yellow-500 to-red-500 h-2 rounded-full relative">
+                  <div className="absolute left-[60%] top-0 w-3 h-3 bg-white rounded-full transform -translate-y-0.5 border-2 border-yellow-400"></div>
+                </div>
+              </div>
+              <div className="flex justify-between text-xs text-slate-400">
+                <span>Low</span>
+                <span>Medium</span>
+                <span>High</span>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card className="bg-gradient-to-br from-slate-800 to-slate-700 border-slate-600">
+          <CardContent className="p-6">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-lg font-semibold text-white">Monthly Return</h3>
+              <div className="text-2xl">📈</div>
+            </div>
+            <div className="space-y-2">
+              <div className="text-2xl font-bold text-green-400">+12.4%</div>
+              <div className="text-sm text-slate-400">vs market +8.2%</div>
+              <div className="flex items-center gap-2 text-xs">
+                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                <span className="text-green-400">Outperforming market by 4.2%</span>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card className="bg-gradient-to-br from-slate-800 to-slate-700 border-slate-600">
+          <CardContent className="p-6">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-lg font-semibold text-white">Sharpe Ratio</h3>
+              <div className="text-2xl">⚡</div>
+            </div>
+            <div className="space-y-2">
+              <div className="text-2xl font-bold text-cyan-400">2.34</div>
+              <div className="text-sm text-slate-400">Risk-adjusted return</div>
+              <div className="flex items-center gap-2 text-xs">
+                <div className="w-2 h-2 bg-cyan-500 rounded-full"></div>
+                <span className="text-cyan-400">Excellent performance</span>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Enhanced Portfolio Chart and Analysis */}
       <div className="grid gap-6 lg:grid-cols-3">
-        <Card className="lg:col-span-2 bg-slate-800 border-slate-700">
+        <Card className="lg:col-span-2 bg-gradient-to-br from-slate-800 to-slate-700 border-slate-600">
           <CardHeader>
             <div className="flex items-center justify-between">
               <div>
-                <CardTitle className="text-white">Portfolio Performance</CardTitle>
-                <CardDescription className="text-slate-400">Today's performance overview</CardDescription>
+                <CardTitle className="text-white text-xl">Portfolio Performance</CardTitle>
+                <CardDescription className="text-slate-400">Advanced analytics and trends</CardDescription>
               </div>
-              <div className="flex items-center gap-2">
-                <Badge variant="secondary" className="bg-green-500/20 text-green-400">+2.1%</Badge>
+              <div className="flex items-center gap-3">
+                <Badge variant="secondary" className="bg-green-500/20 text-green-400 border-green-500/30">
+                  <TrendingUp className="w-3 h-3 mr-1" />
+                  +2.1% today
+                </Badge>
+                <Button variant="outline" size="sm" className="border-slate-600 text-white hover:bg-slate-700">
+                  <Settings className="w-4 h-4 mr-1" />
+                  Settings
+                </Button>
               </div>
             </div>
           </CardHeader>
           <CardContent>
-            <ResponsiveContainer width="100%" height={300}>
+            <div className="mb-4 flex items-center gap-4">
+              <div className="flex items-center gap-2">
+                <div className="w-3 h-3 bg-cyan-500 rounded-full"></div>
+                <span className="text-sm text-slate-300">Portfolio Value</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-3 h-3 bg-purple-500 rounded-full"></div>
+                <span className="text-sm text-slate-300">Market Index</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-3 h-3 bg-orange-500 rounded-full"></div>
+                <span className="text-sm text-slate-300">Volume</span>
+              </div>
+            </div>
+            <ResponsiveContainer width="100%" height={350}>
               <AreaChart data={[
-                { time: '09:00', value: 24800, volume: 120 },
-                { time: '10:00', value: 25100, volume: 180 },
-                { time: '11:00', value: 24950, volume: 150 },
-                { time: '12:00', value: 25200, volume: 200 },
-                { time: '13:00', value: 25000, volume: 170 },
-                { time: '14:00', value: 25150, volume: 190 },
-                { time: '15:00', value: 25000, volume: 160 }
+                { time: '09:00', value: 24800, market: 24500, volume: 120 },
+                { time: '10:00', value: 25100, market: 24700, volume: 180 },
+                { time: '11:00', value: 24950, market: 24600, volume: 150 },
+                { time: '12:00', value: 25200, market: 24800, volume: 200 },
+                { time: '13:00', value: 25000, market: 24750, volume: 170 },
+                { time: '14:00', value: 25150, market: 24850, volume: 190 },
+                { time: '15:00', value: 25300, market: 24900, volume: 220 },
+                { time: '16:00', value: 25400, market: 25000, volume: 240 }
               ]}>
                 <defs>
-                  <linearGradient id="valueGradient" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#06B6D4" stopOpacity={0.3}/>
-                    <stop offset="95%" stopColor="#06B6D4" stopOpacity={0}/>
+                  <linearGradient id="portfolioGradient" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="#06B6D4" stopOpacity={0.4}/>
+                    <stop offset="95%" stopColor="#06B6D4" stopOpacity={0.1}/>
+                  </linearGradient>
+                  <linearGradient id="marketGradient" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="#8B5CF6" stopOpacity={0.3}/>
+                    <stop offset="95%" stopColor="#8B5CF6" stopOpacity={0.1}/>
                   </linearGradient>
                 </defs>
-                <XAxis dataKey="time" axisLine={false} tickLine={false} tick={{ fill: '#94A3B8', fontSize: 12 }} />
-                <YAxis hide />
+                <XAxis
+                  dataKey="time"
+                  axisLine={false}
+                  tickLine={false}
+                  tick={{ fill: '#94A3B8', fontSize: 12 }}
+                />
+                <YAxis
+                  hide
+                  domain={['dataMin - 100', 'dataMax + 100']}
+                />
                 <Tooltip
                   contentStyle={{
                     backgroundColor: '#1E293B',
                     border: '1px solid #475569',
-                    borderRadius: '8px',
-                    color: 'white'
+                    borderRadius: '12px',
+                    color: 'white',
+                    boxShadow: '0 10px 25px rgba(0,0,0,0.5)'
                   }}
+                  formatter={(value, name) => [
+                    `$${value?.toLocaleString()}`,
+                    name === 'value' ? 'Portfolio' : name === 'market' ? 'Market' : 'Volume'
+                  ]}
+                />
+                <Area
+                  type="monotone"
+                  dataKey="market"
+                  stroke="#8B5CF6"
+                  fill="url(#marketGradient)"
+                  strokeWidth={2}
+                  strokeDasharray="5 5"
                 />
                 <Area
                   type="monotone"
                   dataKey="value"
                   stroke="#06B6D4"
-                  fill="url(#valueGradient)"
-                  strokeWidth={2}
+                  fill="url(#portfolioGradient)"
+                  strokeWidth={3}
+                />
+                <Line
+                  type="monotone"
+                  dataKey="volume"
+                  stroke="#F97316"
+                  strokeWidth={1}
+                  dot={false}
                 />
               </AreaChart>
             </ResponsiveContainer>
           </CardContent>
         </Card>
 
-        <Card className="bg-slate-800 border-slate-700">
+        {/* Enhanced Asset Allocation */}
+        <Card className="bg-gradient-to-br from-slate-800 to-slate-700 border-slate-600">
           <CardHeader>
             <CardTitle className="text-white">Asset Allocation</CardTitle>
-            <CardDescription className="text-slate-400">Portfolio distribution</CardDescription>
+            <CardDescription className="text-slate-400">Diversification breakdown</CardDescription>
           </CardHeader>
           <CardContent>
-            <ResponsiveContainer width="100%" height={200}>
+            <ResponsiveContainer width="100%" height={220}>
               <PieChart>
                 <Pie
                   data={portfolioChartData}
                   cx="50%"
                   cy="50%"
-                  innerRadius={40}
-                  outerRadius={80}
-                  paddingAngle={5}
+                  innerRadius={50}
+                  outerRadius={90}
+                  paddingAngle={3}
                   dataKey="value"
                 >
                   {portfolioChartData.map((entry, index) => (
@@ -599,16 +731,77 @@ export function UserTradingDashboard() {
                 />
               </PieChart>
             </ResponsiveContainer>
-            <div className="space-y-2 mt-4">
+            <div className="space-y-3 mt-4">
               {portfolioChartData.map((item, index) => (
-                <div key={index} className="flex items-center justify-between text-sm">
-                  <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 rounded-full" style={{ backgroundColor: item.color }}></div>
-                    <span className="text-slate-300">{item.name}</span>
+                <div key={index} className="flex items-center justify-between text-sm hover:bg-slate-700/30 p-2 rounded transition-colors">
+                  <div className="flex items-center gap-3">
+                    <div
+                      className="w-4 h-4 rounded-full shadow-sm"
+                      style={{ backgroundColor: item.color }}
+                    ></div>
+                    <span className="text-slate-300 font-medium">{item.name}</span>
                   </div>
-                  <span className="text-white font-medium">{((item.value / portfolioValue) * 100).toFixed(1)}%</span>
+                  <div className="text-right">
+                    <div className="text-white font-semibold">
+                      {((item.value / portfolioValue) * 100).toFixed(1)}%
+                    </div>
+                    <div className="text-xs text-slate-400">
+                      ${item.value.toLocaleString()}
+                    </div>
+                  </div>
                 </div>
               ))}
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Performance Metrics Grid */}
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        <Card className="bg-gradient-to-br from-slate-800 to-slate-700 border-slate-600">
+          <CardContent className="p-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-xs text-slate-400 mb-1">Max Drawdown</p>
+                <p className="text-lg font-bold text-red-400">-5.2%</p>
+              </div>
+              <div className="text-red-400">📉</div>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card className="bg-gradient-to-br from-slate-800 to-slate-700 border-slate-600">
+          <CardContent className="p-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-xs text-slate-400 mb-1">Volatility</p>
+                <p className="text-lg font-bold text-yellow-400">12.4%</p>
+              </div>
+              <div className="text-yellow-400">⚡</div>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card className="bg-gradient-to-br from-slate-800 to-slate-700 border-slate-600">
+          <CardContent className="p-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-xs text-slate-400 mb-1">Beta</p>
+                <p className="text-lg font-bold text-cyan-400">0.85</p>
+              </div>
+              <div className="text-cyan-400">📊</div>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card className="bg-gradient-to-br from-slate-800 to-slate-700 border-slate-600">
+          <CardContent className="p-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-xs text-slate-400 mb-1">Alpha</p>
+                <p className="text-lg font-bold text-green-400">+3.2%</p>
+              </div>
+              <div className="text-green-400">🚀</div>
             </div>
           </CardContent>
         </Card>
