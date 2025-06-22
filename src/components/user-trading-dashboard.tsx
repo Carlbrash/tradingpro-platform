@@ -68,6 +68,7 @@ import {
 import { useAuth, authService } from "@/lib/auth"
 import { useLiveMarketData } from "@/hooks/use-live-market-data"
 import { RealTimeMarketBanner } from "./real-time-market-banner"
+import { LiveFootballScores } from "./live-football-scores"
 import { ErrorBoundary } from "./error-boundary"
 
 interface UserPosition {
@@ -528,6 +529,9 @@ export function UserTradingDashboard() {
           </CardContent>
         </Card>
       </div>
+
+      {/* Live Football Scores Banner */}
+      <LiveFootballScores />
 
       {/* Advanced Analytics Row */}
       <div className="grid gap-4 md:grid-cols-3">
