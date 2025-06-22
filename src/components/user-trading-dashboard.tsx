@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, memo, useMemo, useCallback } from "react"
 import {
   TrendingUp,
   TrendingDown,
@@ -112,7 +112,7 @@ interface SocialPost {
   comments: number
 }
 
-export function UserTradingDashboard() {
+const UserTradingDashboardComponent = () => {
   const { user } = useAuth()
   const [currentPage, setCurrentPage] = useState<'portfolio' | 'discover' | 'social' | 'watchlist'>('portfolio')
   const [searchTerm, setSearchTerm] = useState('')
@@ -122,8 +122,8 @@ export function UserTradingDashboard() {
   const [tradeAmount, setTradeAmount] = useState([1000])
   const [portfolioValue] = useState(25000)
 
-  // Enhanced mock positions with eToro-style data
-  const [positions] = useState<UserPosition[]>([
+  // Memoized static data to prevent recreating on every render
+  const positions = useMemo<UserPosition[]>(() => [
     {
       id: '1',
       symbol: 'BTC',
@@ -166,10 +166,10 @@ export function UserTradingDashboard() {
       logo: '🍎',
       industry: 'Technology'
     }
-  ])
+  ], [])
 
-  // Enhanced social feed data
-  const [socialFeed] = useState<SocialPost[]>([
+  // Memoized social feed data
+  const socialFeed = useMemo<SocialPost[]>(() => [
     {
       id: '1',
       user: 'CryptoKing',
@@ -203,42 +203,66 @@ export function UserTradingDashboard() {
       likes: 42,
       comments: 12
     }
-  ])
+  ], [])
 
   const { data: marketData } = useLiveMarketData({
-    updateInterval: 120000,
+    updateInterval: 120000, // Slower updates for better performance
     autoStart: true
   })
 
-  // Portfolio pie chart data
-  const portfolioChartData = [
-    { name: 'Bitcoin', value: 21625, color: '#F7931A' },
-    { name: 'Ethereum', value: 17912, color: '#627EEA' },
-    { name: 'Apple', value: 4625, color: '#007AFF' },
-    { name: 'Cash', value: 5000, color: '#00D4AA' }
-  ]
+  // Memoized heavy calculations
+  const portfolioMetrics = useMemo(() => {
+    const totalPnL = positions.reduce((sum, pos) => sum + pos.pnl, 0)
+    const totalPnLPercent = ((totalPnL / portfolioValue) * 100)
 
-  const totalPnL = positions.reduce((sum, pos) => sum + pos.pnl, 0)
-  const totalPnLPercent = ((totalPnL / portfolioValue) * 100)
+    // Portfolio pie chart data
+    const portfolioChartData = [
+      { name: 'Bitcoin', value: 21625, color: '#F7931A' },
+      { name: 'Ethereum', value: 17912, color: '#627EEA' },
+      { name: 'Apple', value: 4625, color: '#007AFF' },
+      { name: 'Cash', value: 5000, color: '#00D4AA' }
+    ]
 
-  const handleLogout = async () => {
+    return {
+      totalPnL,
+      totalPnLPercent,
+      portfolioChartData
+    }
+  }, [positions, portfolioValue])
+
+  // Memoized enhanced market data to avoid recalculation
+  const enhancedMarketData = useMemo(() => {
+    return marketData.map(asset => ({
+      ...asset,
+      sentiment: Math.floor(Math.random() * 40) + 60, // 60-100 sentiment
+      socialVolume: Math.floor(Math.random() * 1000) + 100,
+      industry: asset.symbol === 'BTC' ? 'Cryptocurrency' : asset.symbol === 'ETH' ? 'Cryptocurrency' : 'Technology',
+      description: `${asset.name} is trending with high social sentiment`,
+      logo: asset.symbol === 'BTC' ? '₿' : asset.symbol === 'ETH' ? 'Ξ' : '📈'
+    }))
+  }, [marketData])
+
+  // Optimized event handlers with useCallback
+  const handleLogout = useCallback(async () => {
     await authService.logout()
-  }
+  }, [])
 
-  const openTradeDialog = (asset: any) => {
+  const openTradeDialog = useCallback((asset: any) => {
     setSelectedAsset(asset)
     setIsTradeDialogOpen(true)
-  }
+  }, [])
 
-  // Enhanced asset cards with eToro-style data
-  const enhancedMarketData = marketData.map(asset => ({
-    ...asset,
-    sentiment: Math.floor(Math.random() * 40) + 60, // 60-100 sentiment
-    socialVolume: Math.floor(Math.random() * 1000) + 100,
-    industry: asset.symbol === 'BTC' ? 'Cryptocurrency' : asset.symbol === 'ETH' ? 'Cryptocurrency' : 'Technology',
-    description: `${asset.name} is trending with high social sentiment`,
-    logo: asset.symbol === 'BTC' ? '₿' : asset.symbol === 'ETH' ? 'Ξ' : '📈'
-  }))
+  const handlePageChange = useCallback((page: 'portfolio' | 'discover' | 'social' | 'watchlist') => {
+    setCurrentPage(page)
+  }, [])
+
+  const handleViewModeChange = useCallback((mode: 'grid' | 'list') => {
+    setViewMode(mode)
+  }, [])
+
+  const handleSearchChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(e.target.value)
+  }, [])
 
   const Sidebar = () => (
     <div className="flex h-full max-h-screen flex-col gap-2 bg-slate-900 border-r border-slate-800">
@@ -255,7 +279,7 @@ export function UserTradingDashboard() {
           <Button
             variant={currentPage === 'portfolio' ? 'secondary' : 'ghost'}
             className="justify-start text-white hover:text-white hover:bg-slate-800 h-11"
-            onClick={() => setCurrentPage('portfolio')}
+            onClick={() => handlePageChange('portfolio')}
           >
             <Briefcase className="mr-3 h-5 w-5" />
             Portfolio
@@ -264,7 +288,7 @@ export function UserTradingDashboard() {
           <Button
             variant={currentPage === 'discover' ? 'secondary' : 'ghost'}
             className="justify-start text-white hover:text-white hover:bg-slate-800 h-11"
-            onClick={() => setCurrentPage('discover')}
+            onClick={() => handlePageChange('discover')}
           >
             <Search className="mr-3 h-5 w-5" />
             Discover
@@ -273,7 +297,7 @@ export function UserTradingDashboard() {
           <Button
             variant={currentPage === 'social' ? 'secondary' : 'ghost'}
             className="justify-start text-white hover:text-white hover:bg-slate-800 h-11"
-            onClick={() => setCurrentPage('social')}
+            onClick={() => handlePageChange('social')}
           >
             <Users className="mr-3 h-5 w-5" />
             Social Feed
@@ -282,7 +306,7 @@ export function UserTradingDashboard() {
           <Button
             variant={currentPage === 'watchlist' ? 'secondary' : 'ghost'}
             className="justify-start text-white hover:text-white hover:bg-slate-800 h-11"
-            onClick={() => setCurrentPage('watchlist')}
+            onClick={() => handlePageChange('watchlist')}
           >
             <Star className="mr-3 h-5 w-5" />
             Watchlist
@@ -335,8 +359,8 @@ export function UserTradingDashboard() {
               <div className="text-2xl font-bold text-white mb-1">
                 ${portfolioValue.toLocaleString()}
               </div>
-              <div className={`text-sm font-medium ${totalPnL >= 0 ? 'text-green-400' : 'text-red-400'}`}>
-                {totalPnL >= 0 ? '+' : ''}${totalPnL.toFixed(2)} ({totalPnLPercent >= 0 ? '+' : ''}{totalPnLPercent.toFixed(2)}%)
+              <div className={`text-sm font-medium ${portfolioMetrics.totalPnL >= 0 ? 'text-green-400' : 'text-red-400'}`}>
+                {portfolioMetrics.totalPnL >= 0 ? '+' : ''}${portfolioMetrics.totalPnL.toFixed(2)} ({portfolioMetrics.totalPnLPercent >= 0 ? '+' : ''}{portfolioMetrics.totalPnLPercent.toFixed(2)}%)
               </div>
             </div>
           </CardContent>
@@ -370,7 +394,7 @@ export function UserTradingDashboard() {
             type="search"
             placeholder="Search assets, people, or markets..."
             value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
+            onChange={handleSearchChange}
             className="w-full bg-slate-800 border-slate-600 text-white placeholder-slate-400 pl-10 pr-4 h-10 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
           />
         </div>
@@ -383,7 +407,7 @@ export function UserTradingDashboard() {
             variant={viewMode === 'grid' ? 'secondary' : 'ghost'}
             size="sm"
             className="h-8 w-8 p-0"
-            onClick={() => setViewMode('grid')}
+            onClick={() => handleViewModeChange('grid')}
           >
             <Grid3X3 className="h-4 w-4" />
           </Button>
@@ -391,7 +415,7 @@ export function UserTradingDashboard() {
             variant={viewMode === 'list' ? 'secondary' : 'ghost'}
             size="sm"
             className="h-8 w-8 p-0"
-            onClick={() => setViewMode('list')}
+            onClick={() => handleViewModeChange('list')}
           >
             <List className="h-4 w-4" />
           </Button>
@@ -472,18 +496,18 @@ export function UserTradingDashboard() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-slate-300 mb-1">Today's P&L</p>
-                <p className={`text-3xl font-bold ${totalPnL >= 0 ? 'text-green-400' : 'text-red-400'}`}>
-                  {totalPnL >= 0 ? '+' : ''}${totalPnL.toFixed(2)}
+                <p className={`text-3xl font-bold ${portfolioMetrics.totalPnL >= 0 ? 'text-green-400' : 'text-red-400'}`}>
+                  {portfolioMetrics.totalPnL >= 0 ? '+' : ''}${portfolioMetrics.totalPnL.toFixed(2)}
                 </p>
                 <p className="text-xs text-slate-400 flex items-center gap-1 mt-1">
-                  {totalPnLPercent >= 0 ? '+' : ''}{totalPnLPercent.toFixed(2)}%
-                  <span className={`text-xs ${totalPnL >= 0 ? 'text-green-400' : 'text-red-400'}`}>
+                  {portfolioMetrics.totalPnLPercent >= 0 ? '+' : ''}{portfolioMetrics.totalPnLPercent.toFixed(2)}%
+                  <span className={`text-xs ${portfolioMetrics.totalPnL >= 0 ? 'text-green-400' : 'text-red-400'}`}>
                     vs yesterday
                   </span>
                 </p>
               </div>
-              <div className={`h-14 w-14 rounded-xl flex items-center justify-center shadow-lg ${totalPnL >= 0 ? 'bg-gradient-to-r from-green-500 to-emerald-500' : 'bg-gradient-to-r from-red-500 to-rose-500'}`}>
-                {totalPnL >= 0 ?
+              <div className={`h-14 w-14 rounded-xl flex items-center justify-center shadow-lg ${portfolioMetrics.totalPnL >= 0 ? 'bg-gradient-to-r from-green-500 to-emerald-500' : 'bg-gradient-to-r from-red-500 to-rose-500'}`}>
+                {portfolioMetrics.totalPnL >= 0 ?
                   <TrendingUp className="h-7 w-7 text-white" /> :
                   <TrendingDown className="h-7 w-7 text-white" />
                 }
@@ -712,7 +736,7 @@ export function UserTradingDashboard() {
             <ResponsiveContainer width="100%" height={220}>
               <PieChart>
                 <Pie
-                  data={portfolioChartData}
+                  data={portfolioMetrics.portfolioChartData}
                   cx="50%"
                   cy="50%"
                   innerRadius={50}
@@ -720,7 +744,7 @@ export function UserTradingDashboard() {
                   paddingAngle={3}
                   dataKey="value"
                 >
-                  {portfolioChartData.map((entry, index) => (
+                  {portfolioMetrics.portfolioChartData.map((entry, index) => (
                     <Cell key={`cell-${index}`} fill={entry.color} />
                   ))}
                 </Pie>
@@ -736,7 +760,7 @@ export function UserTradingDashboard() {
               </PieChart>
             </ResponsiveContainer>
             <div className="space-y-3 mt-4">
-              {portfolioChartData.map((item, index) => (
+              {portfolioMetrics.portfolioChartData.map((item, index) => (
                 <div key={index} className="flex items-center justify-between text-sm hover:bg-slate-700/30 p-2 rounded transition-colors">
                   <div className="flex items-center gap-3">
                     <div
@@ -1140,3 +1164,5 @@ export function UserTradingDashboard() {
     </div>
   )
 }
+
+export const UserTradingDashboard = memo(UserTradingDashboardComponent)
